@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>download certificates</title>
+    <style>
+        /* General Page Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Container Styling */
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* Heading */
+h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Certificate List */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Certificate Names */
+li span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Download Button */
+a {
+    text-decoration: none;
+    padding: 8px 15px;
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+a:hover {
+    background-color: #0056b3;
+}
+
+/* No Certificates Message */
+p {
+    font-size: 18px;
+    color: red;
+}
+
+/* Back to Home Link */
+.back-home {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.back-home:hover {
+    background-color: #218838;
+}
+
+    </style>
+</head>
+<body>
+
+
+{% block content %}
+
+{% if certificates %}
+    <h3>Your Certificates:</h3>
+    <ul>
+        {% for certificate in certificates %}
+            <li>{{ certificate.bride_name }} & {{ certificate.groom_name }} -
+                <a href="{% url 'download_certificate' certificate.id %}">Download PDF</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>[DEBUG] No certificates available for this user.</p>
+{% endif %}
+
+
+{% endblock %}
+
+</body>
+</html>

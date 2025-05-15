@@ -1,0 +1,258 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+/* Form Container */
+form {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Form Title */
+form h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #444;
+}
+
+/* Input Field */
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+}
+
+form input[type="number"] {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+form input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Submit Button */
+form button {
+    background-color: #007bff;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+form button:active {
+    transform: translateY(0);
+}
+
+/* Messages Alert */
+.alert {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    form {
+        padding: 1.5rem;
+    }
+
+    form h2 {
+        font-size: 1.5rem;
+    }
+
+    form input[type="number"] {
+        padding: 0.7rem;
+    }
+
+    form button {
+        padding: 0.7rem 1.2rem;
+    }
+}
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: white;
+    padding: 25px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    width: 350px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+p {
+    margin-top: 15px;
+}
+
+p a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: white;
+    padding: 25px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    width: 350px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.step {
+    margin: 15px 0;
+    text-align: left;
+}
+
+h3 {
+    color: #3498db;
+    margin-bottom: 8px;
+}
+
+select, input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+.confirmation {
+    display: none;
+    background: #eaf7e4;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 5px;
+    color: #2c662d;
+}

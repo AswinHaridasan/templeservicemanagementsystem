@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Ritual</title>
+</head>
+<body>
+    <h2>Add a New Ritual</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Name:</label>
+        <input type="text" name="name" required><br><br>
+
+        <label>Description:</label>
+        <textarea name="description" required></textarea><br><br>
+
+        <label>Procedure:</label>
+        <textarea name="procedure"></textarea><br><br>
+
+        <button type="submit">Add Ritual</button>
+    </form>
+</body>
+</html>

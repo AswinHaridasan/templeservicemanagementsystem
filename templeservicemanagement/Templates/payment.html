@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MB Payment Page</title>
+
+    <script>
+        function confirmPayment(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            fetch(window.location.pathname, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}",
+                    "Content-Type": "application/json",
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);  // ✅ Show success alert
+                window.location.href = "{% url 'user_home' %}";  // ✅ Redirect to home page
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+    <style>
+      /* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container for the Payment Page */
+.payment-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
+    margin: 20px;
+}
+
+/* Heading Styles */
+h2 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h3 {
+    font-size: 22px;
+    color: #34495e;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Paragraph Styles */
+p {
+    font-size: 16px;
+    color: #555;
+    margin: 8px 0;
+}
+
+/* List Styles */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    background-color: #f8f9fa;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Total Amount Styles */
+.total-amount {
+    font-size: 20px;
+    font-weight: bold;
+    color: #27ae60;
+    margin-top: 20px;
+    text-align: right;
+}
+
+/* Button Styles */
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .payment-container {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    p, ul li {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+    </style>
+</head>
+<body>
+
+<h2>Payment Page</h2>
+<p>Bride: {{ booking.bride_name }}</p>
+<p>Groom: {{ booking.groom_name }}</p>
+<p>Selected Date: {{ booking.date }}</p>
+<p>Time Slot: {{ booking.time_slot }}</p>
+
+<h3>Selected Services:</h3>
+<ul>
+    {% for service in booking.services.all %}
+    <li>{{ service.service_name }} - ${{ service.price }}</li>
+    {% endfor %}
+</ul>
+
+<h3>Total Amount: ${{ total_price }}</h3>
+
+<form method="POST" onsubmit="confirmPayment(event)">
+    {% csrf_token %}
+    <button type="submit">Confirm & Pay</button>
+</form>
+
+</body>
+</html>

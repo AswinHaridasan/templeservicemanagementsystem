@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ritual Bookings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        .download-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .download-btn:hover {
+            background-color: #218838;
+        }
+        .back-home {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .back-home:hover {
+            background-color: #bd2130;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>All Ritual Bookings</h2>
+
+    {% if bookings %}
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Ritual</th>
+                <th>Booked At</th>
+                <th>Payment Status</th>
+                <th>Download</th>
+            </tr>
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.user.username }}</td>
+                    <td>{{ booking.ritual.ritual }}</td>
+                    <td>{{ booking.booked_at }}</td>
+                    <td>{{ booking.payment_status }}</td>
+                    <td>
+                        <a href="{% url 'ritual_report' booking.id %}" class="download-btn">Download PDF</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No ritual bookings found.</p>
+    {% endif %}
+
+    <!-- Back to Home Button -->
+    <a href="{% url 'admin_home' %}" class="back-home">Back to Home</a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Panel</title>
+    <style>
+      /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Header */
+header {
+    background: #2c3e50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Navigation */
+nav {
+    background: #34495e;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+nav ul li a:hover {
+    background: #1abc9c;
+}
+
+/* Utilities (Top Right) */
+.utilities {
+    float: right;
+    list-style: none;
+    margin: -40px 20px 0 0;
+}
+
+.utilities li {
+    display: inline;
+    margin-left: 15px;
+}
+
+.utilities a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout {
+    background: red;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.logout:hover {
+    background: darkred;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+.welcome {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+}
+
+h2 {
+    color: #2c3e50;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    header {
+        font-size: 20px;
+    }
+
+    .utilities {
+        float: none;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    nav ul li {
+        display: block;
+        margin-bottom: 10px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Admin Panel</h1>
+    <ul class="utilities">
+        <li><a href="#">My Account</a></li>
+        <li><a href="{% url 'logout' %}" onclick="return confirm('Are you sure?')" class="logout warn">Log Out</a></li>
+    </ul>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="{% url 'manage_rituals' %}">Manage Rituals</a></li>
+        <li><a href="{% url 'marriage_bookings' %}">Manage Marriage Slot </a></li>
+        <li><a href="{% url 'upload_marriage_certificate' %}">Upload Marriage Certificate</a></li>
+        <li><a href="{% url 'manage_birthstars' %}">Manage Birth Star </a></li>
+        <li><a href="{% url 'view_all_certificates' %}">View M.Certificates</a></li>
+        <li><a href="{% url 'ritual_booking_list' %}">View Ritual Reports</a></li>
+
+
+
+
+    </ul>
+</nav>
+
+<main>
+    <section class="welcome">
+        <h2>Welcome, Admin!</h2>
+        <p>Use the navigation to manage rituals and users.</p>
+    </section>
+</main>
+
+</body>
+</html>

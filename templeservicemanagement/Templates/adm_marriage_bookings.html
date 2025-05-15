@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Marriage Bookings</title>
+    <style>
+        /* General styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styling */
+h2 {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+/* Form & List Container */
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Button Styling */
+a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #3498db;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+a:hover {
+    background-color: #2980b9;
+}
+
+/* List Styling */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: white;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    width: 50%;
+}
+
+    </style>
+</head>
+<body>
+    <h2>Marriage Bookings</h2>
+    <a href="{% url 'add_marriage_booking' %}">Add Additional Services</a>
+    <ul>
+        {% for booking in bookings %}
+            <li>{{ booking.bride_name }} & {{ booking.groom_name }} - {{ booking.date }} at {{ booking.time_slot }}
+                <a href="{% url 'edit_marriage_booking' booking.id %}">Edit</a>
+                <a href="{% url 'delete_marriage_booking' booking.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

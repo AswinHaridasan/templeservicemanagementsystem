@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manage Birth Stars</title>
+    <link rel="stylesheet" href="{% static 'css/adminns.css' %}">
+</head>
+<body>
+
+<header>
+    <h1>Manage Birth Stars</h1>
+    <a href="{% url 'add_birthstar' %}" class="btn">+ Add Birth Star</a>
+    <a href="{% url 'admin_home' %}" class="btn">- Goto AdminPage</a>
+</header>
+
+<main>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Traits</th>
+            <th>Strengths</th>
+            <th>Ritual</th>
+            <th>Actions</th>
+        </tr>
+        {% for birthstar in birthstars %}
+        <tr>
+            <td>{{ birthstar.nakshathra }}</td>
+            <td>{{ birthstar.traits }}</td>
+            <td>{{ birthstar.strengths }}</td>
+            <td>{{ birthstar.ritual |default:"No Ritual Available" }}</td>
+            <td>
+                <a href="{% url 'edit_birthstar' birthstar.id %}" class="edit-btn">Edit</a>
+                <a href="{% url 'delete_birthstar' birthstar.id %}" class="delete-btn" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+</main>
+
+</body>
+</html>

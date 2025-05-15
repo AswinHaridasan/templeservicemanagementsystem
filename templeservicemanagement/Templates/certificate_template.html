@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marriage Certificate</title>
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            text-align: center;
+            background-color: #fff;
+            padding: .5px;
+        }
+        .certificate-container {
+            width: 80%;
+            margin: auto;
+            background: white;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .certificate-header {
+            text-transform: uppercase;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: .5px;
+        }
+        .certificate-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-decoration: underline;
+        }
+        .certificate-body {
+            font-size: 20px;
+            line-height: 1.8;
+            text-align: center;
+        }
+        .names {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .certificate-details {
+            font-size: 20px;
+            margin: 15px 0;
+        }
+        .signatures {
+            text-align: center;
+            margin-top: 30px;
+            white-space: nowrap; /* Prevents line breaks */
+        }
+        .signatures p {
+            display: inline-block; /* Makes the signature labels inline */
+            font-size: 15px;
+            font-weight: bold;
+            margin: 0 40px; /* Adds space between the labels */
+        }
+        .signatures hr {
+            display: inline-block; /* Makes the signature lines inline */
+            border: 2px solid black;
+            width: 100px; /* Adjust the width of the signature lines */
+            margin: 0 20px; /* Adds space between the lines */
+        }
+        .seal p {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 5px; /* Reduced margin to bring text closer to the image */
+        }
+
+        .seal img {
+            width: 100px;
+            margin-top: 0;
+         }
+        .seal {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <img src="media/keralagov.jpg" alt="K.Gov" style="width: 150px; height: auto;">
+    <div class="certificate-container">
+        <p class="certificate-header">Government of Kerala</p>
+        <p class="certificate-header">Department of Marriages</p>
+        <p class="certificate-title">Marriage Certificate</p>
+
+        <div class="certificate-body">
+            <p>This is to certify that</p>
+            <p class="names">{{ certificate.bride_name }} & {{ certificate.groom_name }}</p>
+            <p>were lawfully united in marriage on</p>
+            <p class="certificate-details"><strong>{{ certificate.marriage_date }}</strong> at <strong>{{ certificate.time_slot }}</strong></p>
+            <p>as recorded in our official registry.</p>
+            <p class="certificate-details">
+                Bride Date of Birth: <strong>{{ certificate.bride_dob }}</strong> |
+                Groom Date of Birth: <strong>{{ certificate.groom_dob }}</strong>
+            </p>
+        </div>
+
+        <!-- Signatures Section -->
+        <div class="signatures">
+            <p>Bride's Signature : ________________   ♡ </p> <p>Groom's Signature : ________________   </p>
+            <hr>
+            <p>Officer's Signature : ________________</p>
+        </div>
+
+        <!-- Official Seal Section -->
+        <div class="seal">
+            <img src="media/official-seal.jpg" alt="Official Seal">
+        </div>
+    </div>
+</body>
+</html>

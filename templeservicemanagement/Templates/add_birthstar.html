@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Birth Star</title>
+    <link rel="stylesheet" href="{% static 'css/adminns.css' %}">
+    <style>
+        /* Back Link */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+    </style>
+</head>
+<body >
+
+<header>
+    <h1>Add Birth Star</h1>
+</header>
+
+<main>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Name:</label>
+        <input type="text" name="nakshathra" required>
+
+        <label>Traits:</label>
+        <textarea name="traits"></textarea>
+
+        <label>Strengths:</label>
+        <textarea name="strengths"></textarea>
+
+        <label>Ritual:</label>
+        <textarea name="ritual"></textarea>
+
+        <button type="submit"  >Add Birth Star</button>
+    </form>
+</main>
+    <br>
+    <a href="{% url 'manage_birthstars' %}">Back to Manage Birth Stars</a>
+</body>
+</html>

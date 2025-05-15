@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guruvayur Devaswom Online-Booking</title>
+    <style>
+        /* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+header {
+    background: #2c3e50;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: url('https://source.unsplash.com/1600x900/?temple,spiritual') no-repeat center center/cover;
+    color: black;
+}
+
+.hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    background: #e74c3c;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1.2em;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.cta-button:hover {
+    background: #c0392b;
+}
+
+#services {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+}
+
+.service-card {
+    background: white;
+    padding: 20px;
+    margin: 15px;
+    width: 250px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.service-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.service-card p {
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+.service-card a {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.service-card a:hover {
+    background: #2980b9;
+}
+
+footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>User Home</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'ritual_booking' %}">Ritual Booking</a></li>
+                <li><a href="{% url 'book_marriage' %}">Marriage Slot</a></li>
+                <li><a href="{% url 'user_certificates' %}">My Marriage Certificates</a></li>
+                <li><a href="{% url 'birth_star_info' %}">Birth Star Info</a></li>
+                <li><a href="{% url 'submit_feedback' %}">Feedback</a></li>
+
+            </ul>
+
+
+
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Book your rituals, marriage slots, and check birth star details seamlessly.</h2>
+        <p>Guruvayur Devaswom is a Hindu temple dedicated to Lord Guruvayurappan located in the small town of Guruvayur - Kerala, South India is one of the most important
+            places of worship for Hindus and often referred to as Bhuloka Vaikuntham (Holy Abode of Vishnu on Earth). Devotees now can make use of the NextGen Online
+            Services to make their offerings and make advance Bookings for Darshan / Prasadam and other Services living in India and around the World for a hassle free pilgrimage to Gurupavanapuri.</p>
+<!--        <a href="{% url 'register' %}" class="cta-button">Register</a>-->
+<!--        <a href="{% url 'register_admin' %}" class="cta-button">Register</a>-->
+        <a href="{% url 'logout' %}" onclick="return confirm('Are you sure?')" class="cta-button">Logout</a>
+    </section>
+
+    <section id="services">
+        <div class="service-card" id="rituals">
+            <h3>Ritual Booking</h3>
+            <p>Book various temple rituals online with ease.</p>
+            <a href="{% url 'ritual_booking' %}">Book Now</a>
+        </div>
+
+        <div class="service-card" id="marriage">
+            <h3>Marriage Slot Booking</h3>
+            <p>Reserve your auspicious marriage slot effortlessly.</p>
+            <a href="{% url 'book_marriage' %}">Book Slot</a>
+        </div>
+
+        <div class="service-card" id="birthstar">
+            <h3>Birth Star Info</h3>
+            <p>Get insights into your birth star and astrology.</p>
+            <a href="{% url 'birth_star_info' %}">Check Now</a>
+        </div>
+
+        <div class="service-card" id="feedback">
+            <h3>Feedback</h3>
+            <p>Share your experience and help us improve.</p>
+            <a href="{% url 'submit_feedback' %}">Submit Feedback</a>
+        </div>
+    </section>
+
+
+
+
+
+    <footer>
+        <p>&copy; 2024 Temple Services. All rights reserved.</p>
+    </footer>
+
+<script>
+       {% if messages %}
+       {% for msg in messages %}
+               alert("{{ msg }}");
+       {% endfor %}
+   {% endif %}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Birth Star</title>
+    <style>
+      /* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+/* Header Styling */
+h2 {
+    background-color: #2c3e50;
+    color: white;
+    padding:30px;
+    text-align: center;
+    margin: 0;
+}
+
+
+
+
+
+/* Input Fields */
+input, textarea {
+    flex: 3;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Back Link */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <h2>Edit Birth Star</h2>
+
+    {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label for="nakshathra">Nakshathra:</label>
+        <input type="text" name="nakshathra" value="{{ birthstar.nakshathra }}" required>
+
+        <label for="traits">Traits:</label>
+        <textarea name="traits" rows="4">{{ birthstar.traits }}</textarea>
+
+        <label for="strengths">Strengths:</label>
+        <textarea name="strengths" rows="4">{{ birthstar.strengths }}</textarea>
+
+        <label for="ritual">Ritual:</label>
+        <textarea name="ritual" rows="4">{{ birthstar.ritual }}</textarea>
+
+        <button type="submit">Update Birth Star</button>
+    </form>
+
+    <br>
+    <a href="{% url 'manage_birthstars' %}">Back to Manage Birth Stars</a>
+
+</body>
+</html>

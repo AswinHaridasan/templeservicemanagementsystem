@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Marriage Slot Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        select:disabled {
+            background-color: #e9e9e9;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+
+<script>
+    function checkAvailableSlots() {
+        var selectedDate = document.getElementById("date").value;
+        var slotsDropdown = document.getElementById("time_slot");
+        var errorMessage = document.getElementById("error-message");
+
+        slotsDropdown.innerHTML = `<option value="">Loading...</option>`;
+        slotsDropdown.disabled = true;
+        errorMessage.innerText = "";
+
+        if (!selectedDate) {
+            slotsDropdown.innerHTML = `<option value="">-- Select Date First --</option>`;
+            return;
+        }
+
+        fetch(`/get-available-slots/?date=${selectedDate}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                slotsDropdown.innerHTML = ""; // Clear old options
+
+                if (!data.available_slots || data.available_slots.length === 0 || data.available_slots.includes("Fully Booked")) {
+                    slotsDropdown.innerHTML = `<option value="" disabled selected>Fully Booked</option>`;
+                    slotsDropdown.disabled = true;
+                } else {
+                    slotsDropdown.disabled = false;
+                    slotsDropdown.innerHTML = `<option value="">-- Select Slot --</option>`;
+                    data.available_slots.forEach(slot => {
+                        slotsDropdown.innerHTML += `<option value="${slot}">${slot}</option>`;
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("Fetch error:", error);
+                errorMessage.innerText = "Error loading slots. Please try again.";
+            });
+    }
+</script>
+
+</head>
+<body>
+
+    <h2>Marriage Slot Booking</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Bride's Name:</label>
+        <input type="text" name="bride_name" required><br>
+
+        <label>Groom's Name:</label>
+        <input type="text" name="groom_name" required><br>
+
+        <label>Select Date:</label>
+        <input type="date" name="date" id="date" onchange="checkAvailableSlots()" required><br>
+
+        <label>Select Time Slot:</label>
+        <select name="time_slot" id="time_slot" required>
+            <option value="">-- Select Date First --</option>
+        </select>
+        <div id="error-message" class="error-message"></div>
+
+        <label>Optional Services:</label><br>
+        {% for service in services %}
+            <input type="checkbox" name="services" value="{{ service.id }}">
+            {{ service.service_name }} - ${{ service.price }}<br>
+        {% endfor %}
+
+        <button type="submit">Proceed to Payment</button>
+    </form>
+
+</body>
+</html>

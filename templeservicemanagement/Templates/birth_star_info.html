@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birth Star Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        a {
+            display: inline-block;
+            margin-top: 5px;
+            text-decoration: none;
+            color: #28a745;
+            font-weight: bold;
+            padding: 10px;
+
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Birth Star Information</h1>
+        <form id="birthStarForm">
+            {% csrf_token %}
+            <label for="star">Select Birth Star:</label>
+            <select id="star" name="star">
+                {% for star in stars %}
+                    <option value="{{ star.id }}">{{ star.nakshathra }}</option>
+                {% endfor %}
+            </select>
+            <button type="button" onclick="viewStarDetails()">View Details</button>
+
+            <div style="text-align: center;">
+                <a href="{% url 'user_home' %}">BACK TO HOMEPAGE</a>
+            </div>
+
+
+        </form>
+
+    </div>
+
+    <script>
+        function viewStarDetails() {
+            const starId = document.getElementById('star').value;
+            window.location.href = `/birth-star-detail/${starId}/`;
+        }
+    </script>
+</body>
+</html>

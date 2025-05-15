@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success</title>
+</head>
+<body>
+
+    <h2>Payment Successful!</h2>
+    <p>Thank you for booking the <strong>{{ payment.ritual_booking.ritual.ritual }}</strong> ritual.</p>
+    <p>Transaction ID: <strong>{{ payment.transaction_id }}</strong></p>
+    <p>Amount Paid: <strong>${{ payment.amount_paid }}</strong></p>
+    <p>Status: <strong>{{ payment.payment_status }}</strong></p>
+
+    <a href="{% url 'user_home' %}">Go to Home</a>
+
+</body>
+</html>

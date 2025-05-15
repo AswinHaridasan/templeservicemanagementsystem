@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Marriage Certificates</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f9; }
+        table { width: 80%; margin: 20px auto; border-collapse: collapse; background: white; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); }
+        th, td { padding: 12px; border: 1px solid #ddd; }
+        th { background: #007BFF; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        a { color: #007BFF; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>All Marriage Certificates</h2>
+    <table>
+        <tr>
+            <th>Bride</th>
+            <th>Groom</th>
+            <th>Marriage Date</th>
+            <th>Download</th>
+        </tr>
+        {% for certificate in certificates %}
+        <tr>
+            <td>{{ certificate.bride_name }}</td>
+            <td>{{ certificate.groom_name }}</td>
+            <td>{{ certificate.marriage_date }}</td>
+            <td>
+                {% if certificate.certificate_pdf %}
+                    <a href="{{ certificate.certificate_pdf.url }}" download>Download PDF</a>
+                {% else %}
+                    Not Available
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No certificates found</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

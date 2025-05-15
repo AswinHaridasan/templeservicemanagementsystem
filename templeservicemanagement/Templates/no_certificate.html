@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Certificate Available</title>
+    <style>
+        /* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body Styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff7e5f1a, #feb47b);
+    color: #fff;
+    text-align: center;
+}
+
+/* Container Styling */
+.container {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+}
+
+/* Heading */
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+/* Message Styling */
+p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Button Styling */
+a {
+    display: inline-block;
+    text-decoration: none;
+    background: #fff;
+    color: #ff7e5f;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+a:hover {
+    background: #ff7e5f;
+    color: #fff;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>No Certificate Available</h2>
+        <p>{{ message }}</p>
+        <a href="{% url 'user_home' %}">Go back to Home</a>
+    </div>
+</body>
+</html>

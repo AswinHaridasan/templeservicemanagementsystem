@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Marriage Booking</title>
+    <style>
+        /* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styling */
+h2 {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+/* Form Container */
+form {
+    background: white;
+    padding: 20px;
+    width: 50%;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Label Styling */
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Input Fields */
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Button Styling */
+button {
+    display: block;
+    width: 100%;
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+    </style>
+</head>
+<body>
+    <h2>Edit Marriage Booking</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label>Bride Name:</label>
+        <input type="text" name="bride_name" value="{{ booking.bride_name }}" required>
+        <label>Groom Name:</label>
+        <input type="text" name="groom_name" value="{{ booking.groom_name }}" required>
+        <label>Date:</label>
+        <input type="date" name="date" value="{{ booking.date }}" required>
+        <label>Time Slot:</label>
+        <input type="text" name="time_slot" value="{{ booking.time_slot }}" required>
+        <label>Services:</label>
+        <select name="services" multiple>
+            {% for service in services %}
+                <option value="{{ service.id }}" {% if service in booking.services.all %}selected{% endif %}>{{ service.service_name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Update Booking</button>
+    </form>
+</body>
+</html>
